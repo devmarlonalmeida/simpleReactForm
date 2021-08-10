@@ -1,24 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import './assets/App.css';
+import FormularioCadastro from './components/FormularioCadastro/FormularioCadastro';
+import { Container, Typography } from "@material-ui/core";
+import 'fontsource-roboto'
+import { validarCPF, validarSenha } from './models/cadastro';
+import validacoesCadastro from './context/ValidacoesCadastro';
 
 function App() {
+
+  function onSubmit(dados) {
+    console.log(dados);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container component="article" maxWidth="sm">
+      <Typography variant="h3" align="center" component="h1">Bom dia familia</Typography>
+      <validacoesCadastro.Provider value={{cpf: validarCPF, senha:validarSenha}}>
+        <FormularioCadastro onSubmit={onSubmit} />
+      </validacoesCadastro.Provider>
+    </Container>
   );
 }
 
